@@ -1,0 +1,592 @@
+#include<iostream>
+#include<conio.h>
+#include<stdlib.h>
+using namespace std;
+int mpass=2222, rpass=1111;
+int oneroom=10, tworoom=10, threeroom=10, threebroom=10;
+int oneroomo=0, tworoomo=0, threeroomo=0, threebroomo=0;
+int outstat1=0,out=0,out1=0,out_1=0;
+int onerp=5000, tworp=9000, threerp=12500, threebrp=15000;
+struct node
+{
+	int room_no;
+	int days;
+	char name[200];
+	int mobile;
+	struct node*next;
+};
+
+struct node *head=NULL, *tail, *temp, *t, *a, *b, *p, *q;
+int chnge_room_No(int cho)
+{
+	switch(cho){
+		case 1:
+			cout<<"Enter new number of One bedded room";
+			cin>>oneroom;
+			cout<<"Number of rooms have been updated!!";
+			break;
+		case 2:
+			cout<<"Enter new number of Two bedded room";
+			cin>>tworoom;
+			cout<<"Number of rooms have been updated!!";
+			break;
+		case 3:
+			cout<<"Enter new number of Three bedded room";
+			cin>>threeroom;
+			cout<<"Number of rooms have been updated!!";
+			break;
+		case 4:
+			cout<<"Enter new number of Three bedded beach view room";
+			cin>>threebroom;
+			cout<<"Number of rooms have been updated!!";
+			break;
+		default:
+			cout<<"Wrong choice!!";
+			break;
+	}
+}
+void change_roomPrice(int chi)
+{
+	switch(chi){
+		case 1:
+			cout<<"Enter New price of one bedded room";
+			cin>>onerp;
+			cout<<"Price have been updated!!";
+			break;
+		case 2:
+			cout<<"Enter New price of two bedded room";
+			cin>>tworp;
+            cout<<"Price have been updated!!";
+			break;
+		case 3:
+			cout<<"Enter New price of one bedded room";
+			cin>>threerp;
+			cout<<"Price have been updated!!";
+			break;
+		case 4:
+			cout<<"Enter New price of one bedded room";
+			cin>>threebrp;
+			cout<<"Price have been updated!!";
+			break;
+		default:
+			cout<<"Wrong choice!!";
+			break;
+	}
+}
+int menu()
+{
+	int ret;
+	cout<<"\nMain Menu";
+	cout<<"\n1. CUSTOMER\n2. STAFF\n3. EXIT\n";
+	cout<<"\nEnter your choice: ";
+	cin>>ret;
+	return ret;
+}
+
+int cust_menu()
+{
+	int ret;
+	cout<<"\n  Customer Menu";
+	cout<<"\n 1. New Customer \n 2. Existing customer \n 3. EXIT \n 4. Back to Main Menu\n";
+	cout<<"\nEnter your choice: ";
+	cin>>ret;
+	return ret;
+}
+
+int staff_menu()
+{
+	int ret;
+	cout<<"\n  Staff Menu";
+	cout<<"\n 1. Manager  \n 2. Receptionist \n 3. EXIT \n 4. Back to Main Menu\n\n";
+	cout<<"\nEnter your choice: ";
+	cin>>ret;
+	return ret;
+}
+
+int room_menu()
+{
+	int ret;
+	cout<<"\n  Room Menu";
+	cout<<"\n 1. One-Bedded Room - Rs."<<onerp<<" \n 2. Two-Bedded Room - Rs."<<tworp<<"\n 3. Three-Bedded Room - Rs."<<threerp<<"\n 4. Three-Bedded Beach View Room - Rs."<<threebrp<<"\n  5.EXIT\n";
+	cout<<"\nEnter your choice: ";
+	cin>>ret;
+	return ret;
+}
+
+
+int existingcustomer_menu()
+{
+	int ret;
+	cout<<"\n  Existing Customer Menu";
+	cout<<"\n 1. See your details \n 2. Update your deatils \n 3. Checkout\n 4. Back to Main Menu\n";
+	cout<<"\nEnter your choice: ";
+	cin>>ret;
+	return ret;
+}
+
+int manager_menu()
+{
+	int ret;
+	cout<<"\n  Manager Menu";
+	cout<<"\n 1. Room Avaibility \n 2. Room No. change \n 3. Room Price change \n 4. Back to Main Menu\n";
+	cout<<"\nEnter your choice: ";
+	cin>>ret;
+	return ret;
+}
+
+int receptionist_menu()
+{
+	int ret;
+	cout<<"\n  Receptionist Menu";
+	cout<<"\n 1. Room Avaibility \n 2. Customer details Update  \n 4. Back to Main Menu\n";
+	cout<<"\nEnter your choice: ";
+	cin>>ret;
+	return ret;
+}
+
+int room_allotment()
+{
+	int outstat=0;
+	cout<<"Select Room Type:";
+	while(1&&(outstat!=1))
+	{
+		int rch=room_menu();
+		switch(rch)
+		{
+			case 1: if (oneroom>0)
+					{
+						(temp->room_no)=(100+oneroom);
+						oneroom--;
+						outstat=1;
+						break;
+					}
+					else
+					{
+						break;
+					}
+			case 2: if (tworoom>0)
+					{
+						(temp->room_no)=(200+tworoom);
+						tworoom--;
+						outstat=1;
+						break;
+					}
+					else
+					{
+						break;
+					}
+			case 3: if (threeroom>0)
+					{
+						(temp->room_no)=(300+threeroom);
+						threeroom--;
+						outstat=1;
+						break;
+					}
+					else
+					{
+						break;
+					}
+			case 4: if (threebroom>0)
+					{
+						(temp->room_no)=(400+threebroom);
+						threebroom--;
+						outstat=1;
+						break;
+					}
+					else
+					{
+						break;
+					}
+			default: cout<<"Wrong Choice!!";
+						break;
+		}
+
+	}
+}
+
+void insert()
+{
+	temp=(struct node*)malloc(sizeof(struct node));
+	temp->next=NULL;
+	cout<<"Enter name:";
+	int s=0;
+	cin.getline(temp->name,200,'\t');
+	int room_coice=room_allotment();
+	cout<<"Enter no.of days:";
+	cin>>temp->days;
+	cout<<"Enter mobile no.:";
+	cin>>temp->mobile;
+	if(head==NULL)
+	{
+		head=tail=temp;
+	}
+	else
+	{
+		temp->next=head;
+		head=temp;
+	}
+}
+
+
+int search()
+{
+	int ele,i=0;
+	cout<<"\nPlease enter your Mobile No.:";
+	cin>>ele;
+	t=head;
+	while(t!=NULL)
+	{
+		if(t->mobile==ele)
+			return i+1;
+		t=t->next;
+		i++;
+	}
+	return -1;
+
+}
+
+void disp(int pos)
+{
+		int tt=1;
+        p=head;
+        while(tt<pos)
+        {
+        	p=p->next;
+            tt++;
+        }
+			cout<<"\n\nSummary:";
+			cout<<"\nRoom No.: ";
+			cout<<p->room_no;
+			cout<<"\nName: ";
+			cout<<p->name;
+			cout<<"\nNo of days: ";
+			cout<<p->days;
+			cout<<"\nMobile No.: ";
+			cout<<p->mobile;
+
+}
+
+void update_no(int pos)
+{
+	int nno;
+	int tt=1;
+    p=head;
+    while(tt<pos)
+    {
+        p=p->next;
+        tt++;
+    }
+    cout<<"Enter new no.:";
+    cin>>nno;
+    p->mobile=nno;
+
+    cout<<"\n\nSummary:";
+		cout<<"\nRoom No.: ";
+		cout<<p->room_no;
+		cout<<"\nName: ";
+		cout<<p->name;
+		cout<<"\nNo of days: ";
+		cout<<p->days;
+		cout<<"\nMobile No.: ";
+		cout<<p->mobile;
+
+}
+
+void room_out_chk(int no)
+{
+	no=(no/100);
+	if (no==4)
+		threebroomo++;
+	else if (no==3)
+		threeroomo++;
+	else if (no==2)
+		tworoomo++;
+	else if (no==1)
+		oneroomo++;
+}
+
+void calc_bill(int a, int b)
+{
+	int amount;
+	switch(a)
+	{
+		case 1: amount=onerp* b;
+				cout<<"\nYOUR TOTAL BILL:"<<amount;
+				break;
+		case 2: amount=tworp* b;
+				cout<<"\nYOUR TOTAL BILL:"<<amount;
+				break;
+		case 3: amount=threerp* b;
+				cout<<"\nYOUR TOTAL BILL:"<<amount;
+				break;
+		case 4: amount=threebrp* b;
+				cout<<"\nYOUR TOTAL BILL:"<<amount;
+				break;
+	}
+}
+
+void checkout(int pos)
+{
+		int i=0;
+		p=head;
+        for(i=0;i<pos-1;i++)
+        	p=p->next;
+
+		temp=p;
+        cout<<"\n\nSummary:";
+		cout<<"\nRoom No.: ";
+		cout<<temp->room_no;
+		cout<<"\nName: ";
+		cout<<temp->name;
+        cout<<"\nNo of days: ";
+		cout<<temp->days;
+		cout<<"\nMobile No.: ";
+		cout<<temp->mobile;
+		calc_bill(temp->room_no/100,temp->days);
+		cout<<"\nCustomer checked out.";
+		room_out_chk(temp->room_no);
+        p=temp->next;
+        free(temp);
+
+}
+
+
+
+int main()
+{
+
+    cout<<"\n\t\t\t****************************";
+    cout<<"\n\t\t\t* HOTEL MANAGEMENT PROJECT *";
+    cout<<"\n\t\t\t****************************";
+	cout<<"\n\n\n";
+	int ch;
+	while(1)
+	{
+		ch=menu();
+		switch(ch)
+		{
+			case 1: {
+					system("cls");
+					int chx;
+
+					do
+					{
+						chx=cust_menu();
+						switch(chx)
+						{
+							case 1:		system("cls");
+										cout<<"New Customer Checkin:\n\n ";
+										insert();
+										system("cls");
+										cout<<"\nRoom Allotment succesful!";
+							            cout<<"\n\n\tSummary:";
+							            cout<<"\nRoom No.: ";
+							            cout<<head->room_no;
+							            cout<<"\nName: ";
+										cout<<head->name;
+							            cout<<"\nNo of days: ";
+										cout<<head->days;
+							            cout<<"\nMobile No.: ";
+										cout<<head->mobile;
+										break;
+
+
+							case 2:     system("cls");
+										int che;
+
+										do
+										{
+											che=existingcustomer_menu();
+											switch(che)
+											{
+												case 1:
+														{
+														int pos=search();
+														if (pos==-1)
+														{
+															cout<<"Details not found\n";
+														}
+														else
+														{
+															disp(pos);
+														}
+														outstat1=1;
+														break;
+														}
+
+												case 2:
+														{
+														system("cls");
+														cout<<"Update......";
+														int pos=search();
+														if (pos==-1)
+														{
+															cout<<"Details not found\n";
+														}
+														else
+														{
+															update_no(pos);
+														}
+
+
+														break;
+														}
+												case 3: {
+
+														int pos=search();
+														printf("%d", pos);
+														if (pos==-1)
+														{
+															cout<<"Details not found\n";
+														}
+														else
+														{
+															checkout(pos);
+														}
+														outstat1=1;
+														break;
+														}
+
+
+											}
+										}while(che!=4);
+										break;
+
+							case 3:		{
+
+
+										exit(0);
+										break;
+
+										}
+							case 4: {
+										out=1;
+										break;
+									}
+
+							default: cout<<"Wrong choice"; break;
+						}
+					}while(chx!=4);
+
+					break;
+					}
+
+
+			case 2: {
+					system("cls");
+					int chx;
+
+					do
+					{
+						chx=staff_menu();
+						switch(chx)
+						{
+							case 1: system("cls");
+									cout<<"\nManager Panel....... ";
+									int chp,mpin;
+									cout<<"\nEnter password";
+									cin>>mpin;
+									if(mpin==mpass)
+									{
+
+									do
+									{
+										chp=manager_menu();
+										switch(chp)
+										{
+											case 1: {
+													cout<<"\nAvailabilty of Room";
+													cout<<"\n\nOne-Bedded Room:"<<oneroom+oneroomo<<"\ntwo-Bedded Room:"<<tworoom+tworoomo<<"\nThree-Bedded Room:"<<threeroom+threeroomo<<"\nThree-Bedded Beach View Room:"<<threebroom+threebroomo;
+													break;
+													}
+											case 2: {
+													int z;
+													cout<<"\nEnter room type to be changed";
+													cout<<"\n1.One Bedded\n2.Two Bedded\n3.Three Bedded\n4.Three bedded beach view\n";
+													scanf("%d",&z);
+													chnge_room_No(z);
+													break;
+													}
+											case 3: {
+													int q;
+													cout<<"\nEnter room type whose price is to be changed";
+													cout<<"\n1.One Bedded\n2.Two Bedded\n3.Three Bedded\n4.Three bedded beach view\n";
+													cin>>q;
+													change_roomPrice(q);
+													break;
+												}
+										}
+
+									}while(chp!=4);
+
+
+									break;
+								}
+								else
+								{cout<<"\n wrong pass!!";
+								break;
+													}
+
+							case 2: system("cls");
+									cout<<"\nReceptionist Panel....... ";
+									int chn,rpin;
+									cout<<"\nEnter password";
+									cin>>rpin;
+									if(rpin==rpass)
+									{
+
+									do
+									{
+										chn=receptionist_menu();
+										switch(chn)
+										{
+											case 1: {
+													cout<<"\nAvailabilty of Room";
+													cout<<"\n\nOne-Bedded Room:"<<oneroom+oneroomo<<"\ntwo-Bedded Room:"<<tworoom+tworoomo<<"\nThree-Bedded Room:"<<threeroom+threeroomo<<"\nThree-Bedded Beach View Room:"<<threebroom+threebroomo;
+													break;
+													}
+											case 2: {
+														system("cls");
+														cout<<"Update......";
+														int pos=search();
+														if (pos==-1)
+														{
+															cout<<"Details not found\n";
+														}
+														else
+														{
+															update_no(pos);
+														}
+
+
+														break;
+													}
+
+
+										}
+
+									}while(chn!=4);
+
+
+									break;
+								}
+								else
+								{
+									cout<<"\n Wrong pass!!";
+									break;
+								}
+
+							case 3: 	exit(0);
+
+
+						}
+					}while(chx!=4);
+
+					break;
+					}
+			case 3: exit(0);
+			default: cout<<"Wrong choice";
+		}
+	}
+	return 0;
+}
